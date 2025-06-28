@@ -29,14 +29,14 @@ import androidx.compose.ui.unit.dp
 import com.example.showspotter.R
 import com.example.showspotter.designs.LazyRowFavouriteWatchlistSeriesDesign
 import com.example.showspotter.designs.LazyRowMoviesFavouriteWatchListDesign
-import com.example.showspotter.viewmodels.TMDBViewModel
 import com.example.showspotter.tmdbapidataclass.Movie.MovieDetailsData
 import com.example.showspotter.tmdbapidataclass.Series.SeriesDetailsOneData
+import com.example.showspotter.viewmodels.TMDBViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 
 @Composable
-fun FavouriteScreen(TMDBViewModel: TMDBViewModel, auth: FirebaseAuth, databaseReference: DatabaseReference, goToBackStack:()->Unit, goToMovieDescScreen:(id:Int)->Unit, goToSeriesDescScreen:(id:Int)->Unit){
+fun FavouriteScreen(auth: FirebaseAuth, databaseReference: DatabaseReference, goToBackStack:()->Unit, goToMovieDescScreen:(id:Int)->Unit, goToSeriesDescScreen:(id:Int)->Unit){
     val context = LocalContext.current
 
     //for movie

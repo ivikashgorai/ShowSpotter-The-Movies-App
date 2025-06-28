@@ -51,12 +51,12 @@ import coil3.compose.rememberAsyncImagePainter
 import com.example.showspotter.R
 import com.example.showspotter.designs.DotPageIndicator
 import com.example.showspotter.designs.UserTemplate
-import com.example.showspotter.designs.YouTubePlayerTrailer
 import com.example.showspotter.designs.YouTubePlayerVideos
-import com.example.showspotter.viewmodels.TMDBViewModel
+import com.example.showspotter.designs.YouTubePlayerWithPreview
 import com.example.showspotter.tmdbapidataclass.Series.SeriesCreditsOneData
 import com.example.showspotter.tmdbapidataclass.Series.SeriesDetailsOneData
 import com.example.showspotter.tmdbapidataclass.Series.SeriesVideosOneData
+import com.example.showspotter.viewmodels.TMDBViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 
@@ -133,7 +133,7 @@ fun SeriesDescScreen(databaseReference: DatabaseReference, auth:FirebaseAuth, TM
                             // Retrieve the current trailer
                             val currentTrailer = trailer?.get(page)
                             // Display YouTube Thumbnail
-                            YouTubePlayerTrailer(videoId = currentTrailer?.key ?: "NA")
+                            YouTubePlayerWithPreview(videoId = currentTrailer?.key ?: "NA")
                         }
                         Text(
                             text = "Play Trailer",
@@ -279,7 +279,7 @@ fun SeriesDescScreen(databaseReference: DatabaseReference, auth:FirebaseAuth, TM
 
 
 
-                    var director =
+                    val director =
                         seriesCredits.crew.filter {
                             it.known_for_department == "Directing"
                         }
@@ -461,7 +461,7 @@ fun SeriesDescScreen(databaseReference: DatabaseReference, auth:FirebaseAuth, TM
                     ) {
                         Text("Type", color = Color(0xFFE0E0E0), modifier = Modifier.weight(0.5f))
                         Text(
-                            "$" + seriesDetail.type.toString(),
+                            "$" + seriesDetail.type,
                             color = Color(0xFFE0E0E0),
                             modifier = Modifier.weight(0.5f)
                         )

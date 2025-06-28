@@ -19,7 +19,7 @@ import com.example.showspotter.tmdbapidataclass.Series.SeriesVideosOneData
 class TMDBRepository {
 //    val maileroo_api_key = "your_maileroo_api_key" // website - https://app.maileroo.com/smtp-relay
 //    val tmdb_api_key = "your_tmdb_api_key" // website - https://developer.themoviedb.org/reference/intro/getting-started
-    val maileroo_api_key = "67583b7473858a245f22f6f815fedf4d947466b4bda30df9d3ae9dafc78cbc8b"
+    val maileroo_api_key = "a9be8e697efa01f7b105f598a24c3216ecd2a236f8333650111b4cff3ac60b45"
     val tmdb_api_key = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhZTQwZjMzODI0NTc2ZTFhZTRjNTljNDMyOWNiYTllYyIsIm5iZiI6MTczNjQ1NTgxMi4yMDUsInN1YiI6IjY3ODAzNjg0NDRkNjQ5ZmZhZTdiNTg3NiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AURYa6P9bFNnHl5CtkMPqYU5tL84XtzkPg7D3XoEyww"
 
     private val apiServices = RetrofitBuilder.getApi

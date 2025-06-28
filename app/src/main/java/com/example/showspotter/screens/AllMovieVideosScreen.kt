@@ -31,7 +31,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.showspotter.R
-import com.example.showspotter.designs.YouTubePlayerAllVideos
+import com.example.showspotter.designs.YouTubePlayerWithPreview
 import com.example.showspotter.viewmodels.TMDBViewModel
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -84,7 +84,7 @@ fun AllMovieVideosScreen(TMDBViewModel: TMDBViewModel, id:Int, goBack:()->Unit) 
                 LazyColumn(modifier = Modifier.padding(top=100.dp)) {
                     items(videos) {
                              Column (modifier = Modifier.padding(horizontal = 10.dp)) {
-                                 YouTubePlayerAllVideos(videoId = it.key)
+                                 YouTubePlayerWithPreview(videoId = it.key)
                                  Text(text = it.name, modifier = Modifier
                                          .padding(start = 10.dp, top = 5.dp)
                                      .height(35.dp), color = Color(0xFFE0E0E0),

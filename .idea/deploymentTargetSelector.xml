@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="ShowSpotter.app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-01-23T16:43:56.087908600Z">
+        <DropdownSelection timestamp="2025-06-28T04:47:40.765407500Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\vikas\.android\avd\Pixel_Tablet_API_34.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=10947313B8122838" />
             </handle>
           </Target>
         </DropdownSelection>

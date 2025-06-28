@@ -38,7 +38,6 @@ import com.example.showspotter.R
 import com.example.showspotter.designs.BottomNavigatorDesign
 import com.example.showspotter.designs.LazyRowSeriesDesign
 import com.example.showspotter.viewmodels.TMDBViewModel
-import kotlin.Unit
 
 @Composable
 fun SeriesTabScreen(

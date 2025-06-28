@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.example.showspotter"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.showspotter"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 2
         versionName = "1.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner" }
@@ -78,4 +78,6 @@ dependencies {
     implementation(libs.coil.network.okhttp)
     //shimmer
     implementation(libs.compose.shimmer)
+    //youtube player api
+    implementation(libs.core)
 }

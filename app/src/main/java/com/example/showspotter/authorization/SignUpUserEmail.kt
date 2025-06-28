@@ -28,13 +28,13 @@ fun SignUpUser(
                         Toast.makeText(context, "New User",Toast.LENGTH_SHORT).show()
                     }
                     signSuccessGoToLoginScreen()
-                } else [
+                } else {
                     Toast.makeText(
                         context,
                         "Sign Up Failed ${task.exception?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
-                ]
+                }
             }
 
     }

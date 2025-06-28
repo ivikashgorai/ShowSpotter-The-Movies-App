@@ -1,5 +1,6 @@
 package com.example.showspotter.screens
 
+//import com.example.showspotter.Authorization.GoogleSignInUtils
 import android.content.Intent
 import android.widget.Toast
 import androidx.activity.compose.ManagedActivityResultLauncher
@@ -42,13 +43,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.showspotter.authorization.LogInUser
 import com.example.showspotter.GoogleSignInUtils
-//import com.example.showspotter.Authorization.GoogleSignInUtils
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.CoroutineScope
 import com.example.showspotter.R
+import com.example.showspotter.authorization.LogInUser
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun LoginScreen(databaseReference: DatabaseReference,auth: FirebaseAuth,openHomeScreen:()->Unit,scope: CoroutineScope,launcher: ManagedActivityResultLauncher<Intent, ActivityResult>?) {

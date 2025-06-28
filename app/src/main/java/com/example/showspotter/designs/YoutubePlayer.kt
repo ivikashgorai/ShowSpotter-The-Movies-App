@@ -1,7 +1,6 @@
 package com.example.showspotter.designs
 
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,6 +12,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,42 +23,76 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.net.toUri
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import coil3.compose.rememberAsyncImagePainter
 import com.example.showspotter.R
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 @Composable
 fun YouTubePlayerTrailer(videoId: String) {
-    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
 
-    // YouTube Thumbnail URL
-    val thumbnailUrl = "https://img.youtube.com/vi/$videoId/hqdefault.jpg"
+    AndroidView(
+        factory = { ctx ->
+            YouTubePlayerView(ctx).apply {
+                lifecycleOwner.lifecycle.addObserver(this)
 
-    // Thumbnail with Clickable Behavior
-    Box(
-        modifier = Modifier
-            .fillMaxWidth() // Set desired height
-            .clickable {
-                // Intent to open YouTube video
-                val intent = Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/watch?v=$videoId")
-                )
-                context.startActivity(intent)
+                addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+                    override fun onReady(youTubePlayer: YouTubePlayer) {
+                        youTubePlayer.loadVideo(videoId, 0f)
+                    }
+                })
             }
-    ) {
-        // Load the Thumbnail Image
-        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Image(
-                painter = rememberAsyncImagePainter(model = thumbnailUrl),
-                contentDescription = "YouTube Video Thumbnail",
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.Crop
-            )
-            Image(painter = painterResource(id = R.drawable.play),contentDescription = "play",
-                modifier = Modifier.size(50.dp))
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp)
+    )
+}
+
+
+
+@Composable
+fun YouTubePlayerWithPreview(videoId: String) {
+    var showPlayer by remember { mutableStateOf(false) }
+
+    if (showPlayer) {
+        YouTubePlayerTrailer(videoId)
+    } else {
+        YouTubeThumbnail(videoId) {
+            showPlayer = true
         }
     }
 }
+
+@Composable
+fun YouTubeThumbnail(videoId: String, onClick: () -> Unit) {
+    val thumbnailUrl = "https://img.youtube.com/vi/$videoId/hqdefault.jpg"
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(220.dp)
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            painter = rememberAsyncImagePainter(thumbnailUrl),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.fillMaxSize()
+        )
+        Image(
+            painter = painterResource(id = R.drawable.play),
+            contentDescription = "Play",
+            modifier = Modifier.size(48.dp)
+        )
+    }
+}
+
 
 @Composable
 fun YouTubePlayerVideos(videoId: String) {
@@ -71,7 +108,7 @@ fun YouTubePlayerVideos(videoId: String) {
                 // Intent to open YouTube video
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/watch?v=$videoId")
+                    "https://www.youtube.com/watch?v=$videoId".toUri()
                 )
                 context.startActivity(intent)
             }
@@ -101,7 +138,7 @@ fun YouTubePlayerAllVideos(videoId: String) {
                 // Intent to open YouTube video
                 val intent = Intent(
                     Intent.ACTION_VIEW,
-                    Uri.parse("https://www.youtube.com/watch?v=$videoId")
+                    "https://www.youtube.com/watch?v=$videoId".toUri()
                 )
                 context.startActivity(intent)
             }

@@ -28,6 +28,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.showspotter.repositories.TMDBRepository
 import com.example.showspotter.screens.AllMovieVideosScreen
 import com.example.showspotter.screens.AllSeriesVideosScreen
 import com.example.showspotter.screens.FavouriteScreen
@@ -36,22 +37,19 @@ import com.example.showspotter.screens.LoginScreen
 import com.example.showspotter.screens.MovieDescScreen
 import com.example.showspotter.screens.MovieTabScreen
 import com.example.showspotter.screens.OnBoardingScreen
+import com.example.showspotter.screens.PremiumTabScreen
 import com.example.showspotter.screens.Profile
 import com.example.showspotter.screens.SearchingScreen
 import com.example.showspotter.screens.SeriesDescScreen
 import com.example.showspotter.screens.SeriesTabScreen
+import com.example.showspotter.screens.SettingTabScreen
 import com.example.showspotter.screens.SignUpDetailsScreen
 import com.example.showspotter.screens.SignUpScreen
 import com.example.showspotter.screens.WatchlistScreen
-import com.example.showspotter.repositories.TMDBRepository
-import com.example.showspotter.screens.PremiumTabScreen
-import com.example.showspotter.screens.SettingTabScreen
 import com.example.showspotter.viewmodel_factories.TMDBViewModalFactory
 import com.example.showspotter.viewmodels.TMDBViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import kotlin.collections.listOf
-import kotlin.getValue
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -416,7 +414,7 @@ fun MyApp(TMDBViewModel: TMDBViewModel) {
                 exitTransition = { fasterExitTransition() },
                 popEnterTransition = { fasterEnterTransition() },
                 popExitTransition = { fasterExitTransition() }){
-                Profile(databaseReference,context,auth, goToOnBoardingScreen = {
+                Profile(databaseReference,auth, goToOnBoardingScreen = {
                     navController.navigate("onboarding"){
                         popUpTo(0)
                     }
@@ -438,7 +436,6 @@ fun MyApp(TMDBViewModel: TMDBViewModel) {
 
             composable("premiumtabscreen"){
                 PremiumTabScreen(
-                    navController,
                     goBack = {
                         navController.popBackStack()
                     }
@@ -450,7 +447,7 @@ fun MyApp(TMDBViewModel: TMDBViewModel) {
                 exitTransition = { fasterExitTransition() },
                 popEnterTransition = { fasterEnterTransition() },
                 popExitTransition = { fasterExitTransition() }){
-                FavouriteScreen(TMDBViewModel,auth,databaseReference,goToBackStack={
+                FavouriteScreen(auth,databaseReference,goToBackStack={
                     navController.popBackStack()
                 },goToMovieDescScreen = { id ->
                     navController.navigate("moviedescscreen/$id")

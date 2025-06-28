@@ -40,9 +40,9 @@ import androidx.compose.ui.unit.sp
 import com.example.showspotter.R
 import com.example.showspotter.designs.LazyRowMoviesDesign
 import com.example.showspotter.designs.LazyRowSeriesDesign
-import com.example.showspotter.viewmodels.TMDBViewModel
 import com.example.showspotter.tmdbapidataclass.Movie.PopularTopRatedTrendingOnTheAirMoviesData
 import com.example.showspotter.tmdbapidataclass.Series.PopularTopRatedTrendingOnTheAirSeriesData
+import com.example.showspotter.viewmodels.TMDBViewModel
 
 @Composable
 fun SearchingScreen(
@@ -151,8 +151,8 @@ fun SearchingScreen(
                     }
                 }
             if(done) {
-                var searchedMovie: PopularTopRatedTrendingOnTheAirMoviesData? = TMDBViewModel.getSearchedMovie.collectAsState().value
-                var searchedSeries: PopularTopRatedTrendingOnTheAirSeriesData? = TMDBViewModel.getSearchedSeries.collectAsState().value
+                val searchedMovie: PopularTopRatedTrendingOnTheAirMoviesData? = TMDBViewModel.getSearchedMovie.collectAsState().value
+                val searchedSeries: PopularTopRatedTrendingOnTheAirSeriesData? = TMDBViewModel.getSearchedSeries.collectAsState().value
                 if(searchedMovie?.results?.size !=0) {
                     LazyRowMoviesDesign(movies = searchedMovie, "Movies", goToMovieDescScreen)
                 }

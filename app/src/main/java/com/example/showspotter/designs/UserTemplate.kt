@@ -30,9 +30,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.showspotter.R
-import com.example.showspotter.viewmodels.TMDBViewModel
 import com.example.showspotter.tmdbapidataclass.Movie.MovieDetailsData
 import com.example.showspotter.tmdbapidataclass.Series.SeriesDetailsOneData
+import com.example.showspotter.viewmodels.TMDBViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 
@@ -136,7 +136,6 @@ fun UserTemplate(TMDBViewModel: TMDBViewModel, isMovie: Boolean, id:Int, auth: F
                      // fav true means added // false means removed
                     if (favourite) { // add to data base // current user can never be null here
                         if(isMovie) {
-                            val dbRef =
                                 databaseReference.child("users")
                                     .child(auth.currentUser?.uid ?: "NA")
                                     .child("favourite").child(dataType).child(id.toString())
@@ -145,7 +144,6 @@ fun UserTemplate(TMDBViewModel: TMDBViewModel, isMovie: Boolean, id:Int, auth: F
                             Toast.makeText(context, "Added to favourite", Toast.LENGTH_SHORT).show()
                         }
                         else{
-                            val dbRef =
                                 databaseReference.child("users")
                                     .child(auth.currentUser?.uid ?: "NA")
                                     .child("favourite").child(dataType).child(id.toString())
@@ -191,7 +189,6 @@ fun UserTemplate(TMDBViewModel: TMDBViewModel, isMovie: Boolean, id:Int, auth: F
                     watchlist = !watchlist
                     if (watchlist) { // add to data base // current user can never be null here
                         if(isMovie) {
-                            val dbRef =
                                 databaseReference.child("users")
                                     .child(auth.currentUser?.uid ?: "NA")
                                     .child("watchlist").child(dataType).child(id.toString())
@@ -200,7 +197,6 @@ fun UserTemplate(TMDBViewModel: TMDBViewModel, isMovie: Boolean, id:Int, auth: F
                             Toast.makeText(context, "Added to watchlist", Toast.LENGTH_SHORT).show()
                         }
                         else{
-                            val dbRef =
                                 databaseReference.child("users")
                                     .child(auth.currentUser?.uid ?: "NA")
                                     .child("watchlist").child(dataType).child(id.toString())
