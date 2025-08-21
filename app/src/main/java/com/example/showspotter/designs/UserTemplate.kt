@@ -1,5 +1,6 @@
 package com.example.showspotter.designs
 
+import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -36,6 +37,7 @@ import com.example.showspotter.viewmodels.TMDBViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun UserTemplate(TMDBViewModel: TMDBViewModel, isMovie: Boolean, id:Int, auth: FirebaseAuth, databaseReference: DatabaseReference){//movieId
     val context = LocalContext.current
@@ -225,34 +227,6 @@ fun UserTemplate(TMDBViewModel: TMDBViewModel, isMovie: Boolean, id:Int, auth: F
             )
             Text(
                 "Watchlist",
-                fontSize = 12.sp,
-                color = Color.White,
-                fontFamily = FontFamily(Font(R.font.robotomedium))
-            )
-        }
-        Column(
-            Modifier
-                .fillMaxHeight(1f)
-                .padding(start = 10.dp, end = 10.dp)
-                .background(addbg, shape = RoundedCornerShape(10.dp))
-                .padding(10.dp)
-                .clickable(onClick = {
-                    //favourite
-                    addToList = !addToList
-                    Toast.makeText(context, "Fav Clicked", Toast.LENGTH_SHORT).show()
-
-                }),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-            Image(
-                painterResource(R.drawable.list), contentDescription = "Rate it",
-                modifier = Modifier
-                    .padding(bottom = 5.dp)
-                    .size(40.dp)
-            )
-            Text(
-                "Add to list",
                 fontSize = 12.sp,
                 color = Color.White,
                 fontFamily = FontFamily(Font(R.font.robotomedium))
